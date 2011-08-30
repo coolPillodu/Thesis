@@ -1,0 +1,94 @@
+\chapter{Security}
+\section {Resurrecting Duckling Policy}
+Security threats can be broadly classified into three main classes, depending on whether the system property being threatened is confidentiality, integrity or availability. The properties of protection schemes to counter these security threats involve a three-step process: identification (the user says who she is), authentication (the system verifies the validity of this claim), and authorization (she is granted specific access rights).
+
+The main application of authentication to intermittently connected networks is itself new. \emph{Secure transient association} is a new security model which uses the \emph{Resurrecting Duckling Policy} \cite{Sta_duck}. Unlike the traditional authentication approaches to authentication, from Kerberos to public-key certificates, secure transient association does not rely on on-line connectivity to an authentication or revocation server like Kerberos or public-key certificates. The basic idea is to have a slave device imprint itself to a master through the transfer of an imprinting key. The Resurrecting Duckling security policy is defined by four principles: 
+
+\begin {itemize}
+\item \emph{Two states:} The slave is initially in the imprintable state and any master can ``enslave" it. In the imprinted state, it obeys only to its master. Hence imprintable and imprinted are the two states.
+
+\item \emph{Imprinting:} When the master sends an imprinting key to the slave, the slave transitions from imprintable to imprinted state. The channel used for transmitting the imprinting key is assumed to have its confidentiality and integrity adequately protected.
+
+\item \emph{Death:} A master can order a slave in the imprinted state to transition to the imprintable state and this is known as death.
+
+\item \emph{Assassination:} To cause the death of a imprinted slave artificially, in circumstances other than the one described by the death principle is known as assassination. The slave must be built in such a way that it should be uneconomical for an attacker to assassinate it.
+\end {itemize}
+
+Once the hard problem of authenticating the communicating parties and sharing of key material is solved, protecting a communication channel's confidentiality is a simple task using the mature and robust symmetric ciphers. Although electricity SMs might derive power directly from the prower lines, other SMs for water and gas might be battery powered and have limited amount of energy at their disposal and this places a bound on the total amount of computation the devices can perform, rather than on the rate at which they can perform them. Hence the most relevant performance figure is no longer bits per second but bits per joule. This could lead to the introduction of asynchronous processors, which run without a clock and halt when no computation is being performed.
+
+Integrity of a communication is to ensure that messages from one party to another are not altered by an attacker during the transit. The usual assumption underlying authentication is that the network is insecure and under the control of the attacker, but that the communicating devices involved are capable of keeping their secrets. However an attacker could overturn this assumption and attack the device instead of the network. Although providing tamper resistance is a feasible solution, it is more expensive than providing a solution that rely instead on tamper evidence. Hence similar to the problem of confidentiality, once the problems of authentication and key distribution are solved, the well understood cryptographic methods, such as message authentication codes, could be used to solve the problem of integrity.
+
+The denial-of-service attack is one of the classical attacks on any network infrastructure that cripples the availability a network. To mitigate denial-of-service attack, protocol design must include a way for the server to use a limiting strategy by forcing users to undergo some expensive sacrificial ritual in exchange for a service. For example, servers could make clients solve cryptographic puzzles or answer a question that would be easy for a human but hard for a machine. 
+
+To summarize, authentication of anonymous entities is important; attacks on nodes are more probable than attacks on communications and service-denial attacks are one of the principal problems we have to manage. Resurrecting Duckling policy model is a solution to tackle the problem of secure transient association.
+
+\section{BSI Protection Profile for the Gateway}
+The Bundesamt f\"ur Sicherheit in der Infromationstechnik (BSI) (Federal Office for Information Security - Germany) has proposed a Protection Profile (PP)  for the Gateway of a Smart Metering System (SMS) \cite{BSI_pp}. An implicit SMS architecture is defined in order to provide an overall technical perspective of the Gateway. The PP first, defines a problem statement listing the plausible security threats for the SMS, followed by the security objectives that mitigate these security threats. Furthermore, the PP defines the security requirements to be fulfilled by the Gateway in order to achieve the security objectives. The security functionality of the Gateway comprises of protection of confidentiality, authenticity, integrity of data and information flow control.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=0.8\textwidth]{images/BSI_figure1}
+\caption{Gateway as a part of the Smart Metering System \cite{BSI_pp}}
+\label{fig:BSI_arch}
+\end{figure}
+
+As shown in Figure~\ref{fig:BSI_arch}, the SMS comprises different functional units:
+\begin{itemize}
+\item Home Area Network (HAN): In-house data communication network which interconnects domestic equipment and can be used for energy management purposes.
+\item Metrological Area Network (MAN): In-house data communication network which interconnects metrological equipment and can be used for energy management purposes.
+\item Gateway: Device or unit responsible for collecting Meter Data, processing Meter Data,  providing communication capabilities for devices in the MAN, protecting devices in the LAN and providing cryptographic primitives (with the help of a Security Module).
+\item  Security Module: The Security Module is a part of the Gateway and provides cryptographic services and a secure storage for confidential assets.
+\item Meter: Device responsible for collecting consumption or production data of a commodity and transmitting this data to the Gateway. The Meter has to be able to encrypt and sign the data it sends.
+\item Local Area Network (LAN): Data communication network, connecting a limited number of communication devices (Meters and other items) and covering a moderately sized geographical area within the premises of the consumer. In the context of the description of this PP the term LAN is used as a hypernym.
+\item Wide Area Network (WAN): Extended data communication network connecting a large number of communication devices over a large geographical area.
+\end{itemize}
+
+In order to define the possible security threats associated with the SMS and the Gateway in particular, the PP lists assumptions about the environment  of the components in the threat model.
+
+\begin{itemize}
+
+\item The processing of any kind of private or billing relevant data by external entities (eg. Grid operator, utility company, e.t.c) is assumed to be trustworthy.
+\item The Gateway admin is assumed to be trustworthy. 
+\item The Gateway is installed in a private premises of the consumers house and thus assumed to have a basic level of physical protection.
+\item The access control profiles are guaranteed to provide correct privileges to the external entities while handling the data.
+\item The software updates for the gateway are assumed to be well tested and certified by an authorized third party. 
+\item The WAN network connection is assumed to be adequately reliable and provides sufficient bandwidth. Meters in MAN communicate only with the gateway. In case of disjoint connections between the parties of HAN and WAN, the connection is assumed to be suitably protected.
+\end{itemize}
+
+The threat model describes the threats taking into consideration two types of attackers - local attackers having physical access to Meter, Gateway or a connection between these components and external attackers located in the WAN trying to compromise the confidentiality and/or integrity of the Meter Data and or configuration data transmitted via WAN.
+
+\begin{itemize}
+\item A local attacker may try to alter, insert, replay or redirect the Meter data while being transmitted between the Meter and the Gateway.
+\item An external attacker may try to modify Meter data, Gateway config data, Meter config data or a software update when transmitted between the Gateway and an external entity in the WAN.
+\item A local attacker or WAN attacker may try to alter the Gateway time.
+\item A WAN attacker or local attacker may try to violate the privacy of the consumer by disclosing the association of the Meter data to a specific meter.
+\item A WAN attacker may try to obtain control over Gateways, Meters which enables the attacker to cause damage to consumers or external entities or grids used for commodity distribution.
+\item By physical and/or logical means a local attacker or a WAN attacker may try to read out historical data from the Gateway, and which is no longer needed by the Gateway.
+\item A WAN attacker or local attacker may try to access information to which they don’t have permission to, while the information is stored in the Gateway.
+\item A WAN attacker may try to obtain more detailed information from the Gateway than actually required to fulfill the tasks defined by its role or the contract with the consumer. This includes scenarios in which an external party that is primarily authorized to obtain information from the Gateway tries to obtain more information than the information that has been authorized as well as scenarios in which an attacker who is not authorized at all tires to obtain the information.
+\end{itemize}
+
+According to the PP, the following features must be implemented by the Gateway in order to counter the threats defined earlier. Each threat could be mitigated using a combination of these features.
+
+\begin{itemize}
+\item Firewall: The Gateway shall provide firewall functionality in order to protect the devices or units of the MAN and HAN against threats from the WAN side. The firewall shall
+\begin{itemize}
+\item allow only connections established from internal network to external network (i.e., from the devices in the HAN to the external entities in the WAN or from the Gateway to the external entities in the WAN).
+\item shall provide a wake-up service on the WAN side interface.
+\item shall not allow any other services being offered on the WAN side interface.
+\item enforce communication flows by allowing traffic from devices in the HAN to the WAN only if the the three aspects of security are achieved - confidentiality, integrity and authentication.
+\end{itemize}
+\item Separate Interface: The Gateway shall have physically separated ports for the MAN, the HAN and the WAN and shall automatically detect during its self test whether connections, if any, are wrongly connected.
+\item Concealing: To protect the privacy of its consumers, the Gateway shall conceal the communication with the external entities in the WAN in order to ensure that no privacy-relevant information may be obtained by analyzing the frequency, load, size or the absence of external communication.
+\item Cryptography: The Gateway shall provide these cryptographic functionalities for secure handling of the data between the Meter and the external entities in the WAN.
+\begin{itemize}
+\item authentication, integrity-protection and encryption of all the communication between the Gateway and all the entities in the WAN, MAN and HAN.
+\item replay detection for all communication with external entities.
+\item encryption of the persistently stored user data in the Gateway.
+\end{itemize}
+\item Time stamp: The Gateway shall provide reliable time stamps and update its internal clock in regular intervals by retrieving reliable time information from a dedicated reliable source located in the WAN.
+\item Protection of security functionality: The Gateway shall implement functionality to protect its security functions against malfunctions and tampering. 
+\item Management: The Gateway shall only provide authorized administrators with functions for the management of security features.  Furthermore a secure method for software upgrade is implemented by the Gateway.
+\item Logging: The Gateway shall maintain a set of log files (system log, consumer log and billing log) and access to the information in these logs is restricted.
+\item Access: The Gateway shall control the access of users to information and functions via its external interfaces.
+\end{itemize}

@@ -1,0 +1,43 @@
+%\documentclass{article}
+%\documentclass[journal]{IEEEtran}
+%\documentclass[draft]{report}
+\documentclass{report}
+%\documentclass{draft}
+%\documentclass{ActaOulu}
+\hyphenpenalty=350
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{url}
+\floatstyle{boxed} 
+\restylefloat{figure}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\begin{document}
+
+\input{./title_page.tex}
+
+\begin{abstract}
+This literature study report is part of the Master's thesis project - ``Networking for Smart Meters''. The report starts by giving a broad overview of the problem that is to be solved and then moves on to different technologies like PLC, 6LoWPAN and HIP that can be used to develop the network architecture.
+Methods for securing the network like the Resurrecting Duckling Policy and the BSI Protection Profile are discussed before concluding the report with the previous work done in this field. 
+
+The result of this literature study will be the base for further work and implementation of a proof-of-concept based on the chosen network architecture. 
+\end{abstract}
+
+\tableofcontents
+
+%Chapter 1: Introduction
+\input{./ch1_intro.tex}
+
+%Chapter 2: Technological Alternatives
+\input{./ch2_tech_alter.tex}
+
+%Chapter 3: Security
+\input{./ch3_sec.tex}
+
+%Chapter 4: Previous Work
+\input{./ch4_prev_work.tex}
+
+%References
+\bibliographystyle{plain}
+\bibliography{bibilography}
+
+\end{document}
