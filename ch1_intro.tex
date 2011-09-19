@@ -1,12 +1,16 @@
 \chapter{Introduction}
 \section{Overview}
-A Smart Metering System (SMS) is composed of many Smart Meters (SM), devices that measure the consumption or production of commodities like electrical energy, gas, or water in a physical metrological measurement metering unit and transform the measured values into digital information, that can eventually be forwarded to an accounting system, and further to a billing system. 
+A Smart Metering System (SMS) is composed of many Smart Meters (SM), devices that measure the consumption or production of commodities like electrical energy, gas, or water in a physical metrological measurement metering unit and transform the measured values into digital information, that can not only help in automated meter reading but also in the efficient usage of the utility. Furthermore, a SMS is also composed of several Gateways, accounting companies and electricity providers. Note that, this thesis considers only electricity SMS and extending this work for other utilities is left as a future work.
+
+Gateway is an entity that is located between the accounting company and one or many SMs. Gateway helps in aggregation of the metering data from all the individual SMs and also helps in anonymization of individual metering data.
+
+Accounting  company is responsible for generating billing information for each consumer. The accounting company receives the required data from the Gateways. The Gateways reveal only as much information as required to generate billing information to the accounting company.
+
+The electricity provider is the source of electricity and could also be a electricity generator. For example, a nuclear power plant or a wind energy plant are considered electricity providers. On the other hand there could be two entities operating together as a electricity provider. Such as a company acting as a distributer and a separate entity acting as the generator of electricity.
 
 Smart Meters for electricity, help to conserve energy and reduce carbon dioxide emissions in two ways. Firstly, dynamic pricing, dependent on the current supply situation, is possible thus making it easier to shift electricity consumptions to times when renewable energy sources (e.g., wind energy) are available. This way, less peak-load electricity generation plants-which tend to be inefficient and often based on fossil fuels-are required. Secondly, Smart Meters allow showing customers their electricity consumption in an illustrative manner, which can be a motivation for saving energy.
 
-Although real time monitoring is advantageous there are security threats associated. It is possible to \fxnote*{ cite security threats from real time monitoring}{[]}.
-%\cite{}
-Thus, security of Smart Meters represent a worst-case scenario: the devices lack sufficient power to execute strong security software; they are placed in physically non-secure location and  
+Although real time monitoring is advantageous there are security threats associated. It is possible to extract complex usage patterns from SM data that could eventually lead to compromising an individual's privacy \cite{Molina_SM_att}. Moreover, security of Smart Meters represent a worst-case scenario: the devices lack sufficient power to execute strong security software; they are placed in physically non-secure location and  \fxnote*{find the rest of the story}{..}.
 
 The communication between the SMs and the Gateway is unmanaged, requiring self-configuration support, confidentiality of the communicated information, and may need to take place in a hostile environment. Whereas the communication between the Gateways and the accounting system is managed, requires integrity and confidentiality of the communicated accumulated information, and access to the accounting system by the power generation companies is regulated.
 

@@ -1,6 +1,14 @@
 \chapter{Security}
+
+Security threats can be broadly classified into three main classes, depending on whether the system property being threatened is confidentiality, integrity or availability. The protection schemes to counter these security threats involve a three step process: identification (the user says who she is), authentication (the system verifies the validity of this claim), and authorization (she is granted specific access rights).
+
+\section {Data privacy}
+
+Privacy protection of the metering data from individual SMs is very important for future smart grid and smart metering networks for their roll out and eventual acceptance by the public: research in this area is ongoing and SM users will need to be reassured that their data is secure. The metering data should be securely anonymized and also be securely attributable to a specific location (e.g. a group of houses or  apartments) for billing purposes. The accounting company should not be aware of the association between the individual SM data and the consumer and thus anonymization helps to achieve this task.
+
+The main question regarding the protection of privacy of individual customers becomes: How can high-frequency data be anonymized, i.e. not be attributable to a specific smart meter/home user, without  negatively affecting network operations or the availability of high-frequency metering data? The smallest ‘unit’ of electrical energy consumers that needs to be known to an electrical distribution network is a distribution sub-station or any other entity which forms part of the electrical distribution network and which directly supplies energy consumers.
+
 \section {Resurrecting Duckling Policy}
-Security threats can be broadly classified into three main classes, depending on whether the system property being threatened is confidentiality, integrity or availability. The properties of protection schemes to counter these security threats involve a three-step process: identification (the user says who she is), authentication (the system verifies the validity of this claim), and authorization (she is granted specific access rights).
 
 The main application of authentication to intermittently connected networks is itself new. \emph{Secure transient association} is a new security model which uses the \emph{Resurrecting Duckling Policy} \cite{Sta_duck}. Unlike the traditional authentication approaches to authentication, from Kerberos to public-key certificates, secure transient association does not rely on on-line connectivity to an authentication or revocation server like Kerberos or public-key certificates. The basic idea is to have a slave device imprint itself to a master through the transfer of an imprinting key. The Resurrecting Duckling security policy is defined by four principles: 
 

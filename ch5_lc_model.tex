@@ -1,0 +1,61 @@
+\chapter{Life cycle model}
+
+A life cycle model is a representation of the major phases of a device during its lifetime and their interrelationships in a graphical framework that can be easily understood and communicated. 
+
+The LFID and HFID are the two IDs embedded in a smart meter for the purpose of  distinguishing the frequency of transmission of the metered data. The LFID is used for transmitting the low frequency metered data and the utility can attribute the metered data to the individual customer and can be used for billing purposes. On the other hand the HFID is used to collect high frequency metered data however the data is anonymized.
+
+The LFID and HFID values  are hard-coded into the smart meter, with only the manufacturer and/or the 3rd party escrow service being aware of their link within a single smart meter. They are held in the smart meter as part of the ID profiles.
+PISM or Personally identifiable SM Profile containing:
+PISM Certificate (CERT), containing LFID, PISM Public Key and PISM Certifying Authority infromation.
+PISM Private Key
+
+
+ANSM or Anonymous SM profile containing>
+ANSM Certificate (CERT), containing HFID, ANSM Public Key and ANSM Certifying Authority information.
+ANSM Private Key
+
+
+A secure protocol using the PISM and ANSM are used to create a Client Data Profile (CDP) and Anonymous Data Profile(ADP). 
+
+
+Participants in the SM-Network:
+Smart Meter: Responsible for measuring the amount of electricity (commodity) consumed at defined intervals.
+
+Gateway: Responsible for collecting metered data and the monitoring of proper functioning (weather the SM is dead or alive) of the connected SMs. Transmitting the thus collected data to the accounting company.
+
+Accounting company: Responsible for collecting the data from all the Gateways under its jurisdiction and preparing billing information for each of the consumer.
+
+Energy supplier / Utility: Responsible for power transmission to the consumers. This entity could also be a power generator, such as, a nuclear power plant or a thermal power plant. 
+
+Different cases of installation of an SM:
+A brand new SM to be installed at a consumer premises
+A used SM to be installed at a consumer premises
+A SM to be un-installed at a consumer premises
+
+
+How is the communication between the SM and the gateway handled in the above three cases? More particularly the cryptographic key management between the SM and the Gateway.
+
+Simple solution: Once the SM are assigned to a particular Accounting company then they are associated with that Accounting company for the rest of the life of the device.
+Complex solution: An alternative would be to have a cheaper detachable hardware module within the SM such that once the SM changes hands from one accounting company to another, then the new accounting company replace the hardware module. This hardware module could be responsible for implementing the security scheme of a particular accounting company.
+
+Before the installation / un-installation of the SM at a consumer premises it is assumed that the accounting company has received an application from the consumer,  at an earlier time period, requesting for a SM installation / un-installation. Thus a unique ID is stored in the SM before it is sent out to the field. This unique ID then helps the accounting company to establish an association between the consumer and a particular SM.
+
+The frequency of data reporting from a particular SM is agreed upon during the initialization process b/w the SM and the Gateway. The Gateway then consolidates/aggregates the data and sends the low frequency (previously agreed upon) data to the accounting company and the high frequency data to the electricity company (via the accounting company). Here the Gateway serves  two purposes. Firstly, it helps is aggregating the fine grained metered data from each meter into coarse grained data. In other words the high frequency metered data is transformed into a low frequency reading which helps in creating the billing information. Secondly, the Gateway helps in concealing the association between a particular meter and its high frequency reading, to the accounting company.
+
+Although the high frequency data is transferred via the accounting company to the electricity company, the confidentiality of the data is maintained using cryptography. By this way only the electricity company knows the association between a particular SM and its high frequency metering data. It is assumed that the information about association between an ID and the consumer is shared between the accounting company and the electricity company. This is required  in an event of discrepancy regarding the billing information.
+
+Case 1: The smart meter is carried to the consumer premises by a installation technician. The technician connects the meter to the port mean for it. Once this is done, the meter receives a IP  address. Then it contacts the DNS with a special record request to find the IP of the nearest Gateway. The meter then establishes a connection with the Gateway using the IP address from the DNS query. The process of establishing the connection between the meter and the Gateway is detailed as follows:
+
+<blah...blah...blah..>
+
+The Gateway then communicates the necessary information, about the SM, to the accounting company, which then is responsible for associating the SM with a particular consumer.
+
+Case 2: Similar to Case 1. However care has to be taken so that any previous data stored in the meter is not used for the new consumer so as to cause any discrepancies in the metering information.
+
+Case 3: The technician authenticates himself to the meter as the un-installing procedure has to be carried out only by an authorized personnel. The authentication mechanism could be using  smart card, usb dongle or a password. The meter is taken out of the network by entering an un-install code known to the technician and the Gateway with which the meter was previously registered will delete and entry corresponding to the meter. Gateway then communicates this un-install information to the accounting system. The accounting system is then responsible for de-associating the meter with the consumer in its records. 
+
+OPEN Meter project
+
+Assumptions for the prototype:
+
+Only electricity meter is considered and is assumed to be directly powered by the grid. However ideas/techniques to be listed on how to handle other utility meters which are most probably battery powered.
